@@ -13,6 +13,7 @@ from torch.optim.lr_scheduler import (
     ReduceLROnPlateau,
 )
 import torch.nn.functional as F
+from tqdm import tqdm
 from ..model import BaseEncoderMaintainer, BaseDecoderMaintainer, BaseAutoModel
 from .evaluation import Evaluation, get_feval, Logloss
 from typing import Callable, Iterable, Optional, Tuple, Type, Union
@@ -220,7 +221,7 @@ class NodeClassificationFullTrainer(BaseNodeClassificationTrainer):
         else:
             scheduler = None
 
-        for epoch in range(1, self.max_epoch + 1):
+        for epoch in tqdm(range(1, self.max_epoch + 1)):
             model.train()
             optimizer.zero_grad()
             res = model(data)

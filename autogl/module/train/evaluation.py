@@ -132,10 +132,10 @@ def register_evaluate(*name):
 def get_feval(feval):
     if isinstance(feval, str):
         return EVALUATE_DICT[feval]
-    if isinstance(feval, type) and issubclass(feval, Evaluation):
-        return feval
     if isinstance(feval, _typing.Sequence):
         return [get_feval(f) for f in feval]
+    if isinstance(feval, Evaluation):
+        return feval
     raise ValueError("feval argument of type", type(feval), "is not supported!")
 
 

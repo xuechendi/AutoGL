@@ -31,7 +31,7 @@ class TrainEstimator(BaseEstimator):
             model=boxmodel,
             optimizer=torch.optim.Adam,
             lr=0.005,
-            max_epoch=300,
+            max_epoch=400,
             early_stopping_round=30,
             weight_decay=5e-4,
             device="auto",
