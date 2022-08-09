@@ -25,13 +25,13 @@ class TrainEstimator(BaseEstimator):
         self.evaluation = evaluation
         self.estimator = OneShotEstimator(self.loss_f, self.evaluation)
 
-    def infer(self, model: BaseSpace, dataset, mask="train"):
+    def infer(self, model: BaseSpace, dataset, mask="train", num_epochs = 400):
         boxmodel = model.wrap()
         self.trainer = NodeClassificationFullTrainer(
             model=boxmodel,
             optimizer=torch.optim.Adam,
             lr=0.005,
-            max_epoch=400,
+            max_epoch=num_epochs,
             early_stopping_round=30,
             weight_decay=5e-4,
             device="auto",
