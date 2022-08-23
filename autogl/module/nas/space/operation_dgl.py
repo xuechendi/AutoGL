@@ -184,17 +184,17 @@ def gnn_map(gnn_name, in_dim, out_dim, concat=False, bias=True) -> nn.Module:
     """
     # now gat,sage,chebconv may be different from pyg
     if gnn_name == "gat_8":
-        return GATConvC(in_dim, out_dim, 8, concat=concat,bias=bias)
+        return GATConvC(in_dim, out_dim, 8, concat=concat, bias=bias, allow_zero_in_degree = True)
     elif gnn_name == "gat_6":
-        return GATConvC(in_dim, out_dim, 6, concat=concat, bias=bias)
+        return GATConvC(in_dim, out_dim, 6, concat=concat, bias=bias, allow_zero_in_degree = True)
     elif gnn_name == "gat_4":
-        return GATConvC(in_dim, out_dim, 4,  concat=concat,bias=bias)
+        return GATConvC(in_dim, out_dim, 4, concat=concat, bias=bias, allow_zero_in_degree = True)
     elif gnn_name == "gat_2":
-        return GATConvC(in_dim, out_dim, 2,   concat=concat,bias=bias)
+        return GATConvC(in_dim, out_dim, 2, concat=concat, bias=bias, allow_zero_in_degree = True)
     elif gnn_name in ["gat_1", "gat"]:
-        return GATConvC(in_dim, out_dim, 1, concat=concat, bias=bias)
+        return GATConvC(in_dim, out_dim, 1, concat=concat, bias=bias, allow_zero_in_degree = True)
     elif gnn_name == "gcn":
-        return GraphConv(in_dim, out_dim)
+        return GraphConv(in_dim, out_dim, allow_zero_in_degree = True)
     elif gnn_name == "cheb":
         return MChebConv(in_dim, out_dim, k=2, bias=bias)
     elif gnn_name == "sage":
@@ -204,7 +204,7 @@ def gnn_map(gnn_name, in_dim, out_dim, concat=False, bias=True) -> nn.Module:
     elif gnn_name == "arma":
         return ARMAConv(in_dim, out_dim, bias=bias)
     elif gnn_name == "sg":
-        return SGConv(in_dim, out_dim, bias=bias)
+        return SGConv(in_dim, out_dim, bias=bias, allow_zero_in_degree = True)
     elif gnn_name == "linear":
         return LinearConv(in_dim, out_dim, bias=bias)
     elif gnn_name == "zero":
